@@ -5,7 +5,7 @@
 <!--STYLES END-->
 <!--SCRIPTS-->
 <!--SCRIPTS END-->
-<body>
+<body ng-app="brushfire_videosPage" ng-controller="PageCtrl">
   <div class="container-fluid">
     <!-- Creates the navbar -->
     <nav class="navbar navbar-default navbar-inverse">
@@ -40,9 +40,14 @@
     
     <!--  LIST OF VIDEOS -->
     <section class="the-list-of-videos col-md-12">
-      <div class="loading">Loading videos...</div>
+      <div class="loading" ng-if="videosLoading">Loading videos...</div>
       <ul>
-        <!-- VIDEO DATA INSERTED HERE AS HTML -->
+        <li class="video" ng-repeat="video in videos" ng-if="!videosLoading">
+          <h2>{{ video.title }}</h2>
+          <iframe width="640" height="390" ng-src="{{ video.src }}"
+                  frameborder="0" allowfullscreen>
+          </iframe>
+        </li>
       </ul>
     </section>
   </div>
